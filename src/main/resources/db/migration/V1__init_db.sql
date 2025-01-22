@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS Movies(
 CREATE TABLE IF NOT EXISTS Ratings(
     id SERIAL PRIMARY KEY,
     move_id INT NOT NULL REFERENCES Movies(id) ON DELETE CASCADE,
-    sourse VARCHAR(20) NOT NULL,
+    source VARCHAR(20) NOT NULL,
     value VARCHAR(10) NOT NULL,
     metascore varchar(5) NOT NULL,
     imdb_rating varchar(5) NOT NULL,
