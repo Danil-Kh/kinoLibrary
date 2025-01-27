@@ -2,30 +2,29 @@ package org.example.kinolibrary.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.NonNull;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 
-@Data
 @Table(name = "Ratings")
+@Entity
+@Setter
+@Getter
 public class Rating {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "move_id")
-    private int moveId;
-
-    @NonNull
     @JsonProperty("Source")
     private String source;
 
-    @NonNull
     @JsonProperty("Value")
     private String value;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id", nullable = false)
+    private Movie movie;
+
 }
 

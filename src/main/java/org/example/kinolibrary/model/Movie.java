@@ -3,55 +3,45 @@ package org.example.kinolibrary.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "Movies")
+@Setter
+@Getter
 public class Movie {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "imdb_id")
     @JsonProperty("imdbID")
-    @NonNull
     private String imdbId;
 
-    @NonNull
     @JsonProperty("Title")
     private String title;
 
-    @NonNull
     @JsonProperty("Year")
     private String year;
 
-    @NonNull
     @JsonProperty("Rated")
     private String rated;
 
-    @NonNull
     @JsonProperty("Released")
     private String released;
 
-    @NonNull
     @JsonProperty("Runtime")
     private String runtime;
 
-    @NonNull
     @JsonProperty("Genre")
     private String genre;
 
-    @NonNull
     @JsonProperty("Director")
     private String director;
 
@@ -77,24 +67,25 @@ public class Movie {
     private String poster;
 
     @JsonProperty("Ratings")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "movie", orphanRemoval = true)
     private List<Rating> ratings;
 
     @JsonProperty("Type")
     private String type;
 
-    @JsonProperty("Metascore")
-    private String metascore;
-
     @JsonProperty("imdbRating")
     @Column(name = "imdb_rating")
-    @NonNull
     private String imdbRating;
 
     @JsonProperty("imdbVotes")
     @Column(name = "imdb_votes")
-    private int imdbVotes;
+    private String imdbVotes;
 
-    @JsonProperty("boxOffice")
+    @JsonProperty("Metascore")
+    private String metascore;
+
+
+    @JsonProperty("BoxOffice")
     @Column(name = "box_office")
     private String boxOffice;
 

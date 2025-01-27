@@ -1,32 +1,28 @@
 package org.example.kinolibrary.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
-@Data
 @Entity
-@NoArgsConstructor
+@Table(name = "Users")
+@Setter
+@Getter
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NonNull
     @NotBlank(message = "Username cannot be blank")
     private String username;
 
-    @NonNull
     @NotBlank(message = "Password cannot be blank")
     private String password;
 
-    @NonNull
     @Email
     @NotBlank(message = "Email cannot be blank")
     private String email;

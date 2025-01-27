@@ -24,30 +24,31 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.flywaydb:flyway-core'
-    implementation 'org.flywaydb:flyway-database-postgresql'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-    compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+
+    // Только необходимые Jakarta зависимости
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+
     runtimeOnly 'org.postgresql:postgresql'
+
+    compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    // https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api
-    implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '3.2.0'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
-    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
-    implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '3.4.2'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
+    // https://mvnrepository.com/artifact/io.github.cdimascio/java-dotenv
+    implementation group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2'
+    // https://mvnrepository.com/artifact/org.springframework/spring-webflux
+    implementation group: 'org.springframework', name: 'spring-webflux', version: '6.2.2'
 
 }
-
 tasks.named('test') {
     useJUnitPlatform()
 }
