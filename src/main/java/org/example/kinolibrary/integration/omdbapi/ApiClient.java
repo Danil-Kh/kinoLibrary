@@ -14,7 +14,7 @@ public class ApiClient {
         this.webClient = webClientBuilder.baseUrl("https://www.omdbapi.com").build();
     }
     public Movie getMovie(String title) {
-        Dotenv dotenv = Dotenv.load();
+        Dotenv dotenv = Dotenv.configure().filename(".env.properties").load();
         String apiKey = dotenv.get("API_KEY");
         return webClient
                 .get()

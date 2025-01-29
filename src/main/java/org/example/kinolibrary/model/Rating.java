@@ -14,7 +14,8 @@ import lombok.Setter;
 public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "rating_id")
+    private long ratingId;
 
     @JsonProperty("Source")
     private String source;

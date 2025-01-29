@@ -23,7 +23,7 @@ bin/
 *.iml
 *.ipr
 *.env
-*.env.example
+*.env.properties
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/

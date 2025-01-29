@@ -3,11 +3,11 @@ package org.example.kinolibrary.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -18,7 +18,8 @@ import java.util.List;
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "movie_id")
+    private Integer movieId;
 
     @Column(name = "imdb_id")
     @JsonProperty("imdbID")
@@ -88,5 +89,8 @@ public class Movie {
     @JsonProperty("BoxOffice")
     @Column(name = "box_office")
     private String boxOffice;
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserMovie> userMovies;
 
 }

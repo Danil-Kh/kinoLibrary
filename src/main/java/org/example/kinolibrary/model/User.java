@@ -5,8 +5,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "Users")
@@ -15,7 +16,8 @@ import lombok.Setter;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "user_id")
+    private int userId;
 
     @NotBlank(message = "Username cannot be blank")
     private String username;
@@ -26,5 +28,8 @@ public class User {
     @Email
     @NotBlank(message = "Email cannot be blank")
     private String email;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserMovie> userMovies;
 
 }
