@@ -1,19 +1,13 @@
-package org.example.kinolibrary;
+package org.example.kinolibrary.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.kinolibrary.exception.MovieException;
 import org.example.kinolibrary.integration.omdbapi.ApiClient;
-import org.example.kinolibrary.integration.omdbapi.AppConfig;
 import org.example.kinolibrary.model.Movie;
-import org.example.kinolibrary.model.Rating;
 import org.example.kinolibrary.model.User;
-import org.example.kinolibrary.repository.MovieRepository;
-import org.example.kinolibrary.repository.RatingRepository;
 import org.example.kinolibrary.service.MovieServise;
 import org.example.kinolibrary.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @RequestMapping("/api/v1/urls")
@@ -22,23 +16,22 @@ import java.util.List;
 public class TestController {
    private final ApiClient apiClient;
    private final UserService userService;
-   private final MovieServise movieRepository;
+   private final MovieServise movieServise;
     @GetMapping("test")
-    public String test(){
+    public Movie test() throws MovieException {
         Movie movie;
 //        User user = new User();
 //        user.setUsername("rerere");
 //        user.setPassword("rerere");
 //        user.setEmail("rerere@example.com");
 //        userService.saveUser(user);
-        User user2 = userService.getUserById(1);
+        User user2 = userService.getUserById(2);
 
-        movie = apiClient.getMovie("The Wolf of Wall Street");
-        movie.getRatings().forEach(rating -> rating.setMovie(movie));
+        movie = apiClient.getMovie("the lion king");
 
-     movieRepository.saveMovie(movie, user2);
+        System.out.println("movieRepository.saveMovie(movie, user2) = " + movieServise.saveMovie(movie.getTitle(), user2));
 
-        return "test";
+        return movie;
     }
 
 }

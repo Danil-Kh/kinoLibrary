@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Set;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Table(name = "Movies")
 @Setter
 @Getter
+@ToString
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,9 @@ public class Movie {
     @Column(name = "imdb_id")
     @JsonProperty("imdbID")
     private String imdbId;
+
+    @JsonProperty("Response")
+    private String response;
 
     @JsonProperty("Title")
     private String title;

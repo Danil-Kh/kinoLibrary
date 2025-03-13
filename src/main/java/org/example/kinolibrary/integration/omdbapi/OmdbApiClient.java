@@ -16,7 +16,7 @@ public class OmdbApiClient {
     public static void main(String[] args) {
 
         ApiClient apiClient = new ApiClient(WebClient.builder());
-        Movie movie = apiClient.getMovie("Casino");
+        Movie movie = apiClient.getMovie("Blade runner 2049");
         System.out.println("movie = " + movie);
 
     }
